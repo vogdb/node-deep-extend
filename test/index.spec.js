@@ -69,6 +69,18 @@ describe('deep-extend', function () {
 		b.d.lastIndex.should.not.eql( a.d.lastIndex );
 	});
 
+	it('Error objects', function () {
+		var a = { d: new Error('error') };
+		var b = extend({}, a);
+		b.d.should.instanceOf(Error);
+	});
+
+	it('Error object is cloned', function () {
+		var a = { d: new Error('error') };
+		var b = extend({}, a);
+		b.d.message.should.eql('error');
+	});
+
 	it('doesn\'t change sources', function () {
 		var a = {a: [1]};
 		var b = {a: [2]};
